@@ -29,31 +29,29 @@ func main() {
 	flag.IntVar(&cfg.port, "port", 4000, "API server port")
 	flag.StringVar(&cfg.env, "env", "development", "Environment (dev | staging | prod)")
 
-	// initialize logger 
-	logger := log.New(os.Stdout, "", log.Ldate | log.Ltime) 
+	// initialize logger
+	logger := log.New(os.Stdout, "", log.Ldate|log.Ltime)
 
 	// instance of app struct
 	app := application{
-		config:  cfg,
-		logger:  logger,
+		config: cfg,
+		logger: logger,
 	}
 
-	// request dispactcher to paths 
-	mux := http.NewServeMux()
-	mux.HandleFunc("/v1/healthcheck", app.healthcheckHandler)
+	// request dispactcher to paths
 
 	// Declare HTTP server
 	srv := http.Server{
-		Addr: fmt.Sprintf(":%d", cfg.port),
-		Handler: mux,
-		IdleTimeout: time.Minute,
-		ReadTimeout: 10 * time.Second,
+		Addr:         fmt.Sprintf(":%d", cfg.port),
+		Handler:      app.routes(),
+		IdleTimeout:  time.Minute,
+		ReadTimeout:  10 * time.Second,
 		WriteTimeout: 30 * time.Second,
 	}
 
 	// start http server.
 	logger.Printf("Starting %s server on %s", cfg.env, srv.Addr)
-	err := srv.ListenAndServe() 
+	err := srv.ListenAndServe()
 	log.Fatal(err)
 
 }
