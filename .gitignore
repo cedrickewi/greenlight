@@ -1,0 +1,89 @@
+# Build artifacts
+*.a
+*.so
+*.dylib
+*.env
+
+# C/C++ object files
+*.o
+
+# Compiled binaries
+bin/
+
+# OS specific executables
+dist/
+
+# Coverage data
+cover/
+
+# Debug files
+debug/
+
+# Dependency directories
+vendor/
+
+# IDE files
+.idea/
+*.iml
+*.DS_Store
+
+# OS specific application bundles
+*.app
+*.exe
+
+# Log files
+*.log
+
+# Test files
+testdata/
+
+# Binaries for programs and plugins
+*.exe
+*.dll
+*.so
+*.dylib
+*.out
+
+# Test binary
+*.test
+
+# Dependency directories (e.g., vendored dependencies)
+vendor/
+
+# Output of `go build`
+/bin/
+/obj/
+/pkg/
+
+# Go workspace files
+go.work
+go.work.sum
+
+# IDE and editor files
+.vscode/
+.idea/
+*.iml
+
+# Logs
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+*.swp
+*.swo
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# Git files
+*.orig
+*.rej
+
+# Cache directories
+.cache/
+node_modules/
+
+# Go module files
+/go.sum
