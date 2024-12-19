@@ -10,11 +10,12 @@ import (
 	"os"
 	"time"
 
+	"cedrickewi.com/internal/data"
 	_ "github.com/lib/pq"
 )
 
 const version = "1.0.0"
-
+ 
 type config struct {
 	port int
 	env  string
@@ -29,6 +30,7 @@ type config struct {
 type application struct {
 	config config
 	logger *log.Logger
+	models data.Models
 }
 
 func main() {
@@ -64,6 +66,9 @@ func main() {
 	app := application{
 		config: cfg,
 		logger: logger,
+		// Use the data.NewModels() function to initialize a Models struct, passing in the
+		// connection pool as a parameter.
+		models: data.NewModels(db),
 	}
 
 	// request dispactcher to paths
@@ -100,7 +105,7 @@ func openDB(cfg config) (*sql.DB, error) {
 	// Use the time.ParseDuration() function to convert the idle timeout duration string
 	// to a time.Duration type.
 	duration, err := time.ParseDuration(cfg.db.maxIdleTime)
-	
+
 	if err != nil {
 		return nil, err
 	}
