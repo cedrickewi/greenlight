@@ -1,0 +1,6 @@
+creating references
+Defining relationships
+
+ ">" represents many to one; 
+ "<" represents one to many 
+ "-" one to one relationship 
